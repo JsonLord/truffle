@@ -26,7 +26,15 @@ SECRET_KEY = "django-insecure-^bk)o+h%-=9149%=!gxc=-y@9)nnn^-um*x@cvz%o0d4-&_a*6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://harvesthealth-dashboards-plotly.hf.space",
+]
+
+# For HF Space proxy
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition

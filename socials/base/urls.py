@@ -23,6 +23,8 @@ urlpatterns = [
     path('post/edit/<int:pk>',UpdatePostView.as_view(),name="update_post"),
     path('search',views.search,name='search'),
     path('follow',views.follow,name='follow'),
+    path('health', views.health_check, name='health'),
+    path('api/posts', views.api_posts, name='api_posts'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
