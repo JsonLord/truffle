@@ -37,4 +37,4 @@ ENV PATH="/home/appuser/.local/bin:${PATH}"
 EXPOSE 7860
 
 # Run migrations and start server
-CMD ["sh", "-c", "cd socials && python manage.py migrate && python create_superuser.py && gunicorn socials.wsgi:application --bind 0.0.0.0:7860"]
+CMD ["sh", "-c", "cd socials && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py compress --force && python create_superuser.py && gunicorn socials.wsgi:application --bind 0.0.0.0:7860"]

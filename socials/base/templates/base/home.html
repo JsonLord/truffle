@@ -1,8 +1,11 @@
 <!-- {% extends 'main.html' %} -->
 {% load static %} 
+{% load compress %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'styles/home.scss' %}" />
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'styles/home.scss' %}" />
+{% endcompress %}
 
 <!-- Icons -->
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
