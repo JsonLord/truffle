@@ -150,7 +150,7 @@ COMPRESS_ENABLED = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Managing media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/app'
 MEDIA_URL = '/media/'
 
 # Email:

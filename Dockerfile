@@ -25,9 +25,10 @@ RUN uv pip install --system -r requirements.txt
 # Copy project
 COPY . .
 
-# Create a non-root user
-RUN useradd -m appuser
-RUN chown -R appuser:appuser /app
+# Create a non-root user and media directories
+RUN useradd -m appuser && \
+    mkdir -p /app/audios /app/videos /app/images && \
+    chown -R appuser:appuser /app
 USER appuser
 
 # Set the path to include the user's local bin
