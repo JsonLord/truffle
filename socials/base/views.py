@@ -252,7 +252,7 @@ def api_posts(request):
         data.append({
             "id": post.id,
             "title": post.title,
-            "author": post.author.username,
+            "author": post.author.username if post.author else "Anonymous",
             "no_of_likes": post.no_of_likes,
             "date": post.post_date.strftime("%Y-%m-%d")
         })

@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 from .views import AddPostView,EditProfilePageView,CreateProfilePageView,PasswordsChangeView,FriendView,AddCommentView,DeletePostView,UpdatePostView,ShowProfilePageView
 from . import views
 from django.contrib.auth import views as auth_views
@@ -25,7 +26,11 @@ urlpatterns = [
     path('follow',views.follow,name='follow'),
     path('health', views.health_check, name='health'),
     path('api/posts', views.api_posts, name='api_posts'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    re_path(r'^media/audios/(?P<path>.*)$', serve, {'document_root': '/app/audios'}),
+    re_path(r'^media/videos/(?P<path>.*)$', serve, {'document_root': '/app/videos'}),
+    re_path(r'^media/images/(?P<path>.*)$', serve, {'document_root': '/app/images'}),
+    re_path(r'^media/profile_images/(?P<path>.*)$', serve, {'document_root': '/app/profile_images'}),
+]
 
 
 

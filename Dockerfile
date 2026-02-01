@@ -27,7 +27,7 @@ COPY . .
 
 # Create a non-root user and media directories
 RUN useradd -m appuser && \
-    mkdir -p /app/audios /app/videos /app/images && \
+    mkdir -p /app/audios /app/videos /app/images /app/profile_images && \
     chown -R appuser:appuser /app
 USER appuser
 
