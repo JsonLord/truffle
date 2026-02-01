@@ -33,15 +33,15 @@ class FollowersCount(models.Model):
         return self.user
 
 class Post(models.Model):
-    title=models.CharField(max_length=255)
+    title=models.CharField(max_length=255, null=True, blank=True)
     image=models.ImageField(null=True,blank=True,upload_to="images/")
     audio=models.FileField(null=True,blank=True,upload_to="audio/")
     video=models.FileField(null=True,blank=True,upload_to="video/")
-    title_tag=models.CharField(max_length=255,default="")
-    author=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    title_tag=models.CharField(max_length=255,default="", null=True, blank=True)
+    author=models.ForeignKey(Profile,on_delete=models.CASCADE, null=True, blank=True)
     caption=RichTextField(blank=True,null=True)
     post_date=models.DateField(auto_now_add=True)
-    location=models.CharField(max_length=255,default="")
+    location=models.CharField(max_length=255,default="", null=True, blank=True)
     no_of_likes=models.IntegerField(default=0)
 
     def __str__(self):

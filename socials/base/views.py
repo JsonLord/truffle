@@ -147,6 +147,15 @@ class AddPostView(CreateView):
     form_class = PostForm
     template_name = 'base/add_post.html'
 
+    def form_valid(self, form):
+        if not form.instance.author:
+            try:
+                form.instance.author = self.request.user.profile
+            except Profile.DoesNotExist:
+                # Fallback or error handling
+                pass
+        return super().form_valid(form)
+
 class CreateProfilePageView(CreateView):
     model = Profile
     form_class=ProfilePageForm
