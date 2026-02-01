@@ -35,6 +35,8 @@ class FollowersCount(models.Model):
 class Post(models.Model):
     title=models.CharField(max_length=255)
     image=models.ImageField(null=True,blank=True,upload_to="images/")
+    audio=models.FileField(null=True,blank=True,upload_to="audio/")
+    video=models.FileField(null=True,blank=True,upload_to="video/")
     title_tag=models.CharField(max_length=255,default="")
     author=models.ForeignKey(Profile,on_delete=models.CASCADE)
     caption=RichTextField(blank=True,null=True)

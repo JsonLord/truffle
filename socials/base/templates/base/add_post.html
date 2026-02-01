@@ -18,7 +18,43 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
-            {{ form.as_p }}
+
+            <div class="mb-3">
+                <label>{{ form.title.label }}</label>
+                {{ form.title }}
+            </div>
+            <div class="mb-3">
+                <label>{{ form.title_tag.label }}</label>
+                {{ form.title_tag }}
+            </div>
+            <div class="mb-3">
+                <label>{{ form.author.label }}</label>
+                {{ form.author }}
+            </div>
+            <div class="mb-3">
+                <label>{{ form.caption.label }}</label>
+                {{ form.caption }}
+            </div>
+            <div class="mb-3">
+                <label>{{ form.location.label }}</label>
+                {{ form.location }}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>{{ form.image.label }}</label>
+                    {{ form.image }}
+                </div>
+                <div class="col-md-4">
+                    <label>{{ form.audio.label }}</label>
+                    {{ form.audio }}
+                </div>
+                <div class="col-md-4">
+                    <label>{{ form.video.label }}</label>
+                    {{ form.video }}
+                </div>
+            </div>
+
             <br>
             <button class="btn btn-primary btn-block" style="width:200px;position: relative;left:40%;
             background: linear-gradient(to right,#623dc6 ,#9a35dd );">Post</button>
