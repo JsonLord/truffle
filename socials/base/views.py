@@ -15,7 +15,7 @@ from django.urls import reverse_lazy,reverse
 from django.views import generic
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .forms import *
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 import random
@@ -147,6 +147,15 @@ class AddPostView(CreateView):
     form_class = PostForm
     template_name = 'base/add_post.html'
 
+    def form_valid(self, form):
+        if not form.instance.author:
+            try:
+                form.instance.author = self.request.user.profile
+            except Profile.DoesNotExist:
+                # Fallback or error handling
+                pass
+        return super().form_valid(form)
+
 class CreateProfilePageView(CreateView):
     model = Profile
     form_class=ProfilePageForm
@@ -232,6 +241,22 @@ class UpdatePostView(UpdateView):
     model = Post
     form_class=EditForm
     template_name = 'base/update_post.html'
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})
+
+def api_posts(request):
+    posts = Post.objects.all()
+    data = []
+    for post in posts:
+        data.append({
+            "id": post.id,
+            "title": post.title,
+            "author": post.author.username if post.author else "Anonymous",
+            "no_of_likes": post.no_of_likes,
+            "date": post.post_date.strftime("%Y-%m-%d")
+        })
+    return JsonResponse(data, safe=False)
 
 @login_required(login_url='signup')
 def follow(request):

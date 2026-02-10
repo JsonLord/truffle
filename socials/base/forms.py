@@ -30,7 +30,7 @@ class ProfilePageForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title','title_tag','author','caption','location','image')
+        fields = ('title','title_tag','author','caption','location','image','audio','video')
 
         widgets={
             'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'}),
@@ -62,7 +62,7 @@ class CommentForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model=Post
-        fields = ('title','title_tag','author','caption','location','image')
+        fields = ('title','title_tag','author','caption','location','image','audio','video')
 
         widgets={
             'title':forms.TextInput(attrs={'class':'form-control','placeholder':'Title'}),
